@@ -6,20 +6,40 @@ _INTENTOS_MAXIMOS = 5
 
 
 palabras = ['arbol']
+letras_utilizadas=[]
 
-f = open("palabras.txt", "r")
-for p in f:
-    p = p[:-1]
-    palabras.append(p)
 
-#f = open("palabras.txt", "w")
-#f.write("uno\n")
-f.close()
 
-palinc = random.choice(palabras)
 
-def ObtenerLetra():
-    pass
+def InicioJuego():
+    letras_utilizadas=[]    #Resetea a ninguna.
+
+    f = open("palabras.txt", "r")
+    for p in f:
+        p = p[:-1]
+        palabras.append(p)
+
+
+
+    # f = open("palabras.txt", "w")
+    # f.write("uno\n")bnm
+    f.close()
+
+
+
+
+
+def ObtenerLetra(*args):
+    limitar()
+    l = letra.get()
+    letras_utilizadas.append(l)  # Pone la letra como utilizada.
+
+
+def limitar():
+    letra.set(letra.get().upper())
+    if len(letra.get()) > 1:
+        letra.set(letra.get()[1])
+    # print('<DEBUG>letra = '+str(letra.get()))
 
 
 def mostrar(g):
@@ -27,6 +47,9 @@ def mostrar(g):
         print(l, end=" ")
     print("")
 
+
+
+palinc = random.choice(palabras)
 guiones = "_" * len(palinc)
 
 mostrar(palinc)
